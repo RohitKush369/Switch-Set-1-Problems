@@ -1,0 +1,24 @@
+//press 2nd switch blink 8 LED's
+void setup() {
+volatile char *dirf,*dirk;
+dirf=0x30;
+*dirf=0xFF;
+dirk=0x107;
+*dirk=0x00;
+}
+void loop() {
+  volatile char *outf,*ink,x;
+  volatile long i;
+  outf=0x31;
+  *outf=0x00;
+  ink=0x106;
+  *ink=0x00;
+  while(1){
+  x=*ink;
+  if((x&0x04)==0x04)
+  *outf=0xFF;
+  for(i=0;i<100000;i++);
+  *outf=0x00;
+  for(i=0;i<100000;i++);
+  }
+}
