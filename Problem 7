@@ -1,0 +1,37 @@
+//Press 0th switch 0th  LED should glow 
+//Press 1st  switch 1st  LED should glow ….. ...up to 7th switch 
+void setup() {
+  volatile char *dirf,*dirk;
+  dirf=0x30;
+  *dirf=0xFF;
+  dirk=0x107;
+  *dirk=0x00;
+}
+
+void loop() {
+ volatile char *outf,*ink,x;
+ volatile long i;
+ outf=0x31;
+ *outf=0x00;
+ ink=0x106;
+ *ink=0x00;
+ while(1){
+  x=*ink;
+  if((x&0x01)==0x01)
+    *outf=0x01;
+  else if((x&0x02)==0x02)
+  *outf=0x02;
+ else if ((x&0x04)==0x04)
+ *outf=0x04;
+ else if((x&0x08)==0x08)
+  *outf=0x08;
+ else if((x&0x10)==0x10)
+  *outf=0x10;
+ else if ((x&0x20)==0x20)
+  *outf=0x20;
+ else if((x&0x40)==0x40)
+  *outf=0x40;
+ else if((x&0x80)==0x80)
+  *outf=0x80;
+ }
+}
